@@ -1,0 +1,7 @@
+Creation du script /root/scripts/DBR_rsync.sh
+La crontab pour l utilisateur root existe deja
+Creation du repertoire /mnt/secbudbr/infra-cos-glpi et definition des droits 755
+mkdir: création du répertoire « /mnt/secbudbr/infra-cos-glpi »
+le mode de « /mnt/secbudbr/infra-cos-glpi » a été conservé à 0755 (rwxr-xr-x).
+Ecriture de //cabuvtl01.aes.alcatel.fr/CCSLF/infra-cos-glpi dans le fichier /etc/fstab
+Le repertoire /mnt/secbudbr/logs existe deja 
