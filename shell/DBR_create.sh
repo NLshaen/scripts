@@ -67,7 +67,7 @@ fi
 if [ ! -d "$DBR_MOUNT" ];
  then
        echo -e "Montage du share $DBR_CIFS";
-	mkdir -p -v $DBR_MBASE && mount -t cifs -v $DBR_CIFS $DBR_MBASE -o username=dbrbuccsl_jp,password=3id_n6dtyr@t
+	mkdir -p -v $DBR_MBASE && mount -t cifs -v $DBR_CIFS $DBR_MBASE -o username=username,password=password
        sleep 5
        cd $DBR_MBASE && mkdir -p -v $HOSTNAME && chmod -v 755 $DBR_MDIR && cd -;
        sleep 2
@@ -75,7 +75,7 @@ if [ ! -d "$DBR_MOUNT" ];
        umount -v $DBR_CIFS
         sleep 5
 	echo -e "Montage du share $DBR_CIFS_DIR";
-        mount -t cifs -v $DBR_CIFS_DIR $DBR_MBASE -o username=dbrbuccsl_jp,password=3id_n6dtyr@t
+        mount -t cifs -v $DBR_CIFS_DIR $DBR_MBASE -o username=username,password=password
 	sleep 5
 	#echo -e "Définition des droits 755 pour $DBR_MDIR";
 	#echo -e "Définition des droits 755 pour $DBR_MDIR";
@@ -90,7 +90,7 @@ fi
 if [ ! -d "$DBR_FSTAB" ]
   then
 	echo -e "Ecriture de $DBR_CIFS_DIR dans le fichier /etc/fstab"
-	echo -e "//cabuvtl01.aes.alcatel.fr/ccslf/$HOSTNAME /mnt/secbudbr cifs auto,username=dbrbuccsl_jp,password=3id_n6dtyr@t,rw 0 0" >> /etc/fstab
+	echo -e "//cabuvtl01.aes.alcatel.fr/ccslf/$HOSTNAME /mnt/secbudbr cifs auto,username=username,password=password,rw 0 0" >> /etc/fstab
   else
 	echo -e "Montage existe deja dans /etc/fstab"
 
