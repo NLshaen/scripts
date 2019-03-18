@@ -69,7 +69,13 @@ if __name__ == "__main__":
     print "Hypervisor Types: %s" % cluster.get('hypervisor_types')
     print ("=" * 79)
     status, vmcluster = testRestApi.getVmInformation()
-    print "Number of VMs on cluster: %s" % vmcluster.get(['total_entities'])
+    print "Number of VMs on cluster: %s" % vmcluster.get('metadata','count')
+    print "List of VMs Names on cluster: "
+    
+    #status, vmcluster = testRestApi.getVmInformation()
+    for item in vmcluster.get('entities'):
+      print (item['name'])
+    
     print ("=" * 79)
     print "Status code: %s" % status
     print "Text: "
