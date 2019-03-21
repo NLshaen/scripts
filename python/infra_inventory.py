@@ -3,13 +3,14 @@
 
 import requests
 import json
-#import argparse
+import argparse
 import pprint
 import urllib3
 import os
 import random
 import sys
 import traceback
+import csv
 
 #Vars
 
@@ -57,24 +58,39 @@ class TestRestApi():
 if __name__ == "__main__":
   try:
     
+    # EXPORT HTML
+    #pathexportfile = "/var/www/html/inventory/infra_inventory.html"
+    #sys.stdout = open('/var/www/html/inventory/infra_inventory.html','w')
+
     testRestApi = TestRestApi()   
     status, cluster = testRestApi.getClusterInformation()
     print ("=" * 79)
     print "Name: %s" % cluster.get('name')
     print "ID: %s" % cluster.get('id')
     print "Cluster Nodes: %s" % cluster.get('num_nodes')
-    print "ServiceTag: %s" % cluster.get(['block_serials'][0])
+
+    for item in cluster.get('rackable_units'):
+      print ("Service Tag : " + item['serial'] + " ,Model Name : " + item['model_name'] )
+
+    #print "ServiceTag: %s" % cluster.get(['block_serials'][0])
+    
     print "Version: %s" % cluster.get('version')
     print "Architecture: %s" % cluster.get('cluster_arch')
-    print "Hypervisor Types: %s" % cluster.get('hypervisor_types')
+    print "Hypervisor Types: %s" % cluster.get(str('hypervisor_types'))
     print ("=" * 79)
+
     status, vmcluster = testRestApi.getVmInformation()
-    print "Number of VMs on cluster: %s" % vmcluster.get('metadata','count')
-    print "List of VMs Names on cluster: "
+
+    print "Number of VMs on cluster: %s" % vmcluster.get('metadata'[2])
     
-    #status, vmcluster = testRestApi.getVmInformation()
-    for item in vmcluster.get('entities'):
-      print (item['name'])
+    print "List of VMs Names on cluster: "
+    for item in sorted(vmcluster.get('entities')):
+      
+      # Voir le type item
+      #print (item['num_vcpus'])
+      #sorted()
+      print ("Name : " + item['name'] + " ,Power State : " + item['power_state'] + " ,VCPUS Number : " + str(item['num_vcpus']) +
+            " ,Cores Number : " + str(item['num_cores_per_vcpu']) + " ,Memory : " + str(item['memory_mb']/1024) + " Gb ")
     
     print ("=" * 79)
     print "Status code: %s" % status
