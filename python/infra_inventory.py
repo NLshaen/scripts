@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+#python 2.7.5
+#yan.lucas@external.thalesaleniaspace.com
+
 import requests
 import json
 import argparse
@@ -11,6 +14,8 @@ import random
 import sys
 import traceback
 import csv
+
+from operator import itemgetter, attrgetter, methodcaller
 
 #Vars
 
@@ -38,7 +43,7 @@ class TestRestApi():
         {'Content-Type': 'application/json; charset=utf-8'})
     return session
 
-#Define fontion Cluster info
+#Define fonction Cluster info
   def getClusterInformation(self):
    
     clusterURL = self.base_url + "/cluster"
@@ -54,6 +59,12 @@ class TestRestApi():
     serverResponse = self.session.get(vmURL)
     return serverResponse.status_code, json.loads(serverResponse.text)
 
+#Define sort dictionnary
+  def tri(dico):
+    items = dico.items()
+    comparateur = lambda a,b : cmp(a[1],b[1])
+    return sorted(items, comparateur, reserve=True)
+
 #Execution command
 if __name__ == "__main__":
   try:
@@ -63,7 +74,9 @@ if __name__ == "__main__":
     #sys.stdout = open('/var/www/html/inventory/infra_inventory.html','w')
 
     testRestApi = TestRestApi()   
+    
     status, cluster = testRestApi.getClusterInformation()
+    
     print ("=" * 79)
     print "Name: %s" % cluster.get('name')
     print "ID: %s" % cluster.get('id')
@@ -72,30 +85,36 @@ if __name__ == "__main__":
     for item in cluster.get('rackable_units'):
       print ("Service Tag : " + item['serial'] + " ,Model Name : " + item['model_name'] )
 
-    #print "ServiceTag: %s" % cluster.get(['block_serials'][0])
-    
     print "Version: %s" % cluster.get('version')
     print "Architecture: %s" % cluster.get('cluster_arch')
-    print "Hypervisor Types: %s" % cluster.get(str('hypervisor_types'))
+    hypervtype = cluster.get('hypervisor_types')
+    print "Hypervisor Types: %s" % hypervtype[0]
     print ("=" * 79)
 
     status, vmcluster = testRestApi.getVmInformation()
-
-    print "Number of VMs on cluster: %s" % vmcluster.get('metadata'[2])
     
+    numbervm = vmcluster.get('metadata')
+    #print (numbervm.values())
+    print ("Number of VMs on cluster: %s"  % numbervm[u'count'])
+   
     print "List of VMs Names on cluster: "
-    for item in sorted(vmcluster.get('entities')):
+    for item in vmcluster.get('entities'):
       
-      # Voir le type item
-      #print (item['num_vcpus'])
-      #sorted()
-      print ("Name : " + item['name'] + " ,Power State : " + item['power_state'] + " ,VCPUS Number : " + str(item['num_vcpus']) +
-            " ,Cores Number : " + str(item['num_cores_per_vcpu']) + " ,Memory : " + str(item['memory_mb']/1024) + " Gb ")
-    
+      listvm = (item['name'], item['power_state'], str(item['num_vcpus']), str(item['num_cores_per_vcpu']), str(item['memory_mb']/1024) )
+      print type(listvm)
+      print sorted(listvm, key=itemgetter(0))
+      #slistvm = sorted(listvm, key=itemgetter(0))
+      #print (sorted(slistvm))
+      
+      #rlistvm = ("Name : " + item['name'] + " ,Power State : " + item['power_state'] + " ,VCPUS Number : " + str(item['num_vcpus']) +
+      #          " ,Cores Number : " + str(item['num_cores_per_vcpu']) + " ,Memory : " + str(item['memory_mb']/1024) + " Gb ")
+      #print type(rlistvm)
+      #rlistvm = sorted(listvm, key = lambda x: x.replace(",", "") )
+      #print (rlistvm)
+ 
     print ("=" * 79)
     print "Status code: %s" % status
     print "Text: "
-    #pp.pprint(cluster)
     print ("=" * 79)
 
   except Exception as ex:
