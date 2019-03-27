@@ -100,14 +100,14 @@ if __name__ == "__main__":
     print "List of VMs Names on cluster: "
     for item in vmcluster.get('entities'):
       
-      listvm = (item['name'], item['power_state'], str(item['num_vcpus']), str(item['num_cores_per_vcpu']), str(item['memory_mb']/1024) )
+      listvm = [("Name : "+item['name']+ " ,Power State : "+item['power_state']+" ,VCPUS Number : " +str(item['num_vcpus'])+" ,Cores Number :" 
+                +str(item['num_cores_per_vcpu'])+", Memory : "+str(item['memory_mb']/1024))] 
       print type(listvm)
-      print sorted(listvm, key=itemgetter(0))
-      #slistvm = sorted(listvm, key=itemgetter(0))
-      #print (sorted(slistvm))
+      sorted(listvm, key=lambda list: list[3])
+      print listvm
       
-      #rlistvm = ("Name : " + item['name'] + " ,Power State : " + item['power_state'] + " ,VCPUS Number : " + str(item['num_vcpus']) +
-      #          " ,Cores Number : " + str(item['num_cores_per_vcpu']) + " ,Memory : " + str(item['memory_mb']/1024) + " Gb ")
+      #rlistvm = [("Name : " + item['name'] + " ,Power State : " + item['power_state'] + " ,VCPUS Number : " + str(item['num_vcpus']) +
+      #          " ,Cores Number : " + str(item['num_cores_per_vcpu']) + " ,Memory : " + str(item['memory_mb']/1024) + " Gb ")]
       #print type(rlistvm)
       #rlistvm = sorted(listvm, key = lambda x: x.replace(",", "") )
       #print (rlistvm)
