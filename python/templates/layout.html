@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask Template Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/var/www/html/inventory/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+      .container {
+        max-width: 500px;
+        padding-top: 100px;
+      }
+      h2 {color: red;}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>This is part of my base template</h2>
+      <br>
+      {% block content %}{% endblock %}
+      <br>
+      <h2>This is part of my base template</h2>
+    </div>
+    <script src="/var/www/html/inventory/js/jquery.min.js"></script>
+    <script src="/var/www/html/inventory/js/bootstrap.min.js"></script>
+  </body>
+</html>

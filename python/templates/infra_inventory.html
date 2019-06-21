@@ -1,0 +1,18 @@
+<!doctype html>
+<title>Hello from Flask</title>
+
+{% extends "layout.html" %}
+
+{% block content %}
+  <h3> This is the start of my child template</h3>
+  <br>
+  <p>name: {{name}}</p>
+  <p>Value from the list: {{mylist[0]}}</p>
+  <p>Loop through the list:</p>
+  <ul>
+    {% for n in mylist %}
+    <li>{{n}}</li>
+    {% endfor %}
+  </ul>
+  <h3> This is the end of my child template</h3>
+{% endblock %}
