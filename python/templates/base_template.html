@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>BASE TEMPLATE</title>
+   
+    <link href="{{ url_for("static", filename="main.css") }}" rel="stylesheet" type="text/css">
+    
+  </head>
+  
+  <body>
+    <div>  
+      <h3>This is part of my base template</h3>
+      <br>
+      <h4>{% block content %}{% endblock %}</h4>
+      <br>
+      <h3>This is part of my base template</h3>
+    </div>
+  </body>
+
+</html>
