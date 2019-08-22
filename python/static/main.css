@@ -1,9 +1,115 @@
 #CSS YLS
 
-h1 { font-size: 3em; color: green; text-align: center; }
+html, body {margin:0; padding:0}
+body {
+background-color:silver;
+margin:10px 10px 10px 10px;
+}
 
-h2 { font-size: 3em; color: red; text-align: center; }
+.centercolumn {
+  width:100pourcent;/*Taille de la colonne centrée moins le padding*/
+  background-color:#ffffff;/*Couleur de fond*/
+  margin: auto; /*centrer la colonne*/
+  padding:25px;/*margin interne*/
+}
 
-h3 { font-size: 2em; color: blue; text-align: center; }
+header {
+  padding:10px 10px;/*Marge verticale*/
+  background-color:#00bbff; /*Couleur de fond*/
+  text-align:center;/*texte centré*/
+}
 
-h4 { font-size: 1em; color: green; text-align: center; }
+main {
+  background-color:#00ffff;
+}
+
+footer {
+  padding:10px 10px;/*Marge verticale*/
+  background-color:#00bbff; /*Couleur de fond*/
+  text-align:center;/*texte centré*/
+}
+
+h1 {
+font-family:arial, sans-serif;
+font-size:100%;
+color:#00bfff;
+background-color:transparent;
+text-align:center;
+}
+h2 {
+font-family:arial, sans-serif;
+font-size:100%;
+color:green;
+background-color:transparent;
+text-align:center;
+}
+h3 {
+font-family:arial, sans-serif;
+font-size:100%;
+color:red;
+background-color:transparent;
+text-align:center;
+}
+h4 {
+font-family:arial, sans-serif;
+font-size:100%;
+color:#00ffff;
+background-color:transparent;
+text-align:center;
+}
+p {
+font-family:tahoma, sans-serif;
+font-size:100%;
+color:black;
+background-color:#00bbff;
+text-align:center;
+margin-left:1;
+margin-right:1;
+}
+li {
+font-family:tahoma, sans-serif;
+font-size:100%;
+color:#595959;
+background-color:#bfbfbf;
+text-align:center;
+margin-left:0;
+margin-right:0;
+}
+a:link {
+font-family:arial, sans-serif;
+font-size:100%;
+color:black;
+background-color:transparent;
+text-decoration:underline;
+}
+a:visited {
+font-family:arial, sans-serif;
+font-size:100%;
+color:black;
+background-color:transparent;
+text-decoration:underline;
+}
+a:hover {
+font-family:arial, sans-serif;
+font-size:100%;
+color:black;
+background-color:transparent;
+text-decoration:underline;
+}
+a:active, a:focus {
+font-family:arial, sans-serif; font-size:100%; color:black; background-color:transparent; text-decoration:underline; }
+table {
+border-color:white;
+border-style:solid;
+border-width:1px;
+}
+td {
+font-family:arial, sans-serif;
+font-size:100%;
+color:silver;
+text-align:center;
+background-color:transparent;
+border-color:gray;
+border-style:solid;
+border-width:1px;
+}
