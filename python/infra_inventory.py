@@ -25,7 +25,7 @@ from operator import itemgetter, attrgetter, methodcaller
 #VARS
 
 #URL API REST NUTANIX
-#url = "https://172.30.172.179:9440/PrismGateway/services/rest/v2.0/"
+#url = "https://ip:9440/PrismGateway/services/rest/v2.0/"
 
 #echo 'import crypt,getpass; print crypt.crypt(getpass.getpass(), "$6$TASSalt")' | python -
 #$6$TASSalt$5Q3WshgOijNAohsW3va.Q/jfv/kbfziP0xVL3jNaOxNNDhQ7R/JRZjawLEM0xvQzWVDuAga6fvaPN3EKbOu1y/
@@ -35,10 +35,10 @@ class NutanixApiRest():
   def __init__(self):
     """Init the connection to the REST API Explore"""
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-    self.serverIpAddress = "172.30.172.179"
-    self.username = "ylu@nutanix.indus"
+    self.serverIpAddress = "ip"
+    self.username = "username"
     #self.password = "$6$TASSalt$5Q3WshgOijNAohsW3va.Q/jfv/kbfziP0xVL3jNaOxNNDhQ7R/JRZjawLEM0xvQzWVDuAga6fvaPN3EKbOu1y/"
-    self.password = "Jetemerde666!"
+    self.password = "password"
     BASE_URL = 'https://%s:9440/PrismGateway/services/rest/v2.0/'
     self.base_url = BASE_URL % self.serverIpAddress
     self.session = self.get_server_session(self.username, self.password)
